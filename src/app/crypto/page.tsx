@@ -1,10 +1,13 @@
 "use client";
 import Footer from "@/Components/HomePage/Footer";
-import Main from "@/Components/HomePage/Main";
 import Navbar from "@/Components/HomePage/NavBar";
+import MarketPage from "@/Components/AdminPage/MarketPage";
+import MarketPageContainer from "@/Components/AdminPage/MarketPage";
 import { AllCrypto } from "@/Service/crypto";
 import { CryptoProps } from "@/Utils/types";
 import { useEffect, useState } from "react";
+import MarketPageMain from "@/Components/Crypto/CryptoMain";
+import CryptoPageMain from "@/Components/Crypto/CryptoMain";
 
 export default function Home() {
   const [cryptoList, setCryptoList] = useState<CryptoProps[]>();
@@ -23,7 +26,7 @@ export default function Home() {
       </div>
 
       <div>
-        <Main />
+        <CryptoPageMain />
       </div>
 
       <div>

@@ -1,10 +1,12 @@
 "use client";
 import Footer from "@/Components/HomePage/Footer";
-import Main from "@/Components/HomePage/Main";
 import Navbar from "@/Components/HomePage/NavBar";
+
 import { AllCrypto } from "@/Service/crypto";
 import { CryptoProps } from "@/Utils/types";
 import { useEffect, useState } from "react";
+
+import OfferPageMain from "@/Components/Offer/OfferMain";
 
 export default function Home() {
   const [cryptoList, setCryptoList] = useState<CryptoProps[]>();
@@ -23,7 +25,7 @@ export default function Home() {
       </div>
 
       <div>
-        <Main />
+        <OfferPageMain />
       </div>
 
       <div>
