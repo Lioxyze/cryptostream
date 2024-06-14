@@ -1,21 +1,7 @@
 "use client";
-import {
-  getAllBoxes,
-  getAllCategories,
-  getAllUsers,
-  insertAnimal,
-} from "@/Service/animals";
-import {
-  AnimalProps,
-  AnimalUpdateOrInsertProps,
-  BoxProps,
-  CategoryProps,
-  CreateCryptoProps,
-  CryptoProps,
-  OfferProps,
-  UserProps,
-} from "@/Utils/types";
-import React, { useEffect, useState } from "react";
+
+import { OfferProps, UserProps } from "@/Utils/types";
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ErrorMsg } from "../Error";
 import { insertOffer } from "@/Service/offers";
@@ -32,21 +18,23 @@ export const InsertOffersForm = ({
   handleClose,
 }: InsertOffersProps) => {
   const [usersList, setUsersList] = useState<UserProps[]>();
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<OfferProps>();
 
-  const onSubmit: SubmitHandler<OfferProps> = (data) =>
+  const onSubmit: SubmitHandler<OfferProps> = (data) => {
+    setServerError(null); // reset server error
     insertOffer(data)
       .then((res) => {
         setIsReloadNeeded(true);
         handleClose();
       })
-      .catch((e) => console.log(e));
+      .catch((e) => setServerError(e.message));
+  };
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-white w-1/2 mx-auto">
@@ -60,34 +48,36 @@ export const InsertOffersForm = ({
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
             <label
-              htmlFor="name"
+              htmlFor="quantity"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
               Amount Offers
             </label>
             <div className="mt-2">
               <input
-                type="text"
+                type="number"
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 indent-3"
-                {...register("id", { required: true })}
+                {...register("amount", {
+                  required: "Amount is required",
+                })}
               />
-              {errors.id && <ErrorMsg error={"name"} />}
             </div>
           </div>
           <div>
             <label
-              htmlFor="name"
+              htmlFor="id_crypto"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
               Id crypto
             </label>
             <div className="mt-2">
               <input
-                type="number"
+                type="text"
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 indent-3"
-                {...register("id", { required: true })}
+                {...register("id_crypto", {
+                  required: "Crypto ID is required",
+                })}
               />
-              {errors.id && <ErrorMsg error={"name"} />}
             </div>
           </div>
 
@@ -96,7 +86,7 @@ export const InsertOffersForm = ({
               <input
                 type="submit"
                 className="my-8 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                value="Insert animal"
+                value="Insert offer"
               />
             </div>
           </div>

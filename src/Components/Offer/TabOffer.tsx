@@ -1,48 +1,33 @@
-import { CryptoProps, OfferProps } from "@/Utils/types";
+import { OfferProps } from "@/Utils/types";
 import React from "react";
 import Image from "next/image";
+import { buyOffer } from "@/Service/offers";
+import OfferPageMain from "./OfferMain";
 
-export const TabOffer = ({ offer }: { offer: OfferProps }) => {
+export const TabOffer = ({
+  offer,
+  setIsReloadNeeded,
+}: {
+  offer: OfferProps;
+  setIsReloadNeeded: any;
+}) => {
+  function handleCryptoBuyViaOffer(offerId: string) {
+    buyOffer(offerId)
+      .then((res) => {
+        if (res.data) {
+          if (res.status === 204) {
+          }
+          if (res.status === 201) setIsReloadNeeded(true);
+        }
+      })
+      .catch((e) => {
+        if (e) {
+          console.log(e);
+        }
+      });
+  }
+
   return (
-    // <div className="card">
-    //   <Image
-    //     src={crypto.image}
-    //     width={500}
-    //     height={100}
-    //     alt="Picture of the author"
-    //   />
-    //   <div className="card-content text-black ">
-    //     <div className="card-title text-black">Name: {crypto.name}</div>
-    //     <div className="card-info text-black">Quantity: {crypto.quantity}</div>
-    //     <div className="card-info text-black">Valeur: {crypto.value}</div>
-    //   </div>
-    // </div>
-
-    // <div className="card bg-white shadow-lg rounded-lg overflow-hidden">
-    //   <div className="card-info text-lg text-gray-700 mb-2">
-    //     Id Crypto: {offer.id}
-    //   </div>
-    //   <div className="card-info text-lg text-gray-700">name: {offer.name}</div>
-    //   <div className="card-info text-lg text-gray-700">
-    //     value: {offer.value}
-    //   </div>
-    //   <Image
-    //     src={offer.image}
-    //     width={500}
-    //     height={100}
-    //     alt={`Picture of ${offer.name}`}
-    //   />
-    //   <div className="card-info text-lg text-gray-700">
-    //     quantity: {offer.quantity}
-    //   </div>
-    //   <div className="card-info text-lg text-gray-700">
-    //     created_at: {offer.created_at}
-    //   </div>
-    //   <div className="card-info text-lg text-gray-700">
-    //     updated_at: {offer.updated_at}
-    //   </div>
-    // </div>
-
     <div
       className="relative flex size-full min-h-screen flex-col bg-black dark:bg-gray-900 overflow-x-hidden"
       style={{ fontFamily: 'Manrope, "Noto Sans", sans-serif' }}
@@ -63,15 +48,9 @@ export const TabOffer = ({ offer }: { offer: OfferProps }) => {
           <div className="flex w-full items-end justify-between gap-4 p-4 bg-gradient-to-t from-black via-transparent to-transparent">
             <div className="flex max-w-[440px] flex-1 flex-col gap-1">
               <p className="text-white tracking-wide text-3xl font-bold leading-tight max-w-[440px]">
-                {offer.name}
-              </p>
-              <p className="text-white text-base font-medium leading-normal">
-                {offer.name}
+                {offer?.Crypto?.name}
               </p>
             </div>
-            <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#338de6] text-white text-sm font-bold leading-normal tracking-wide shadow-lg">
-              <span className="truncate">Buy</span>
-            </button>
           </div>
         </div>
       </div>
@@ -82,7 +61,7 @@ export const TabOffer = ({ offer }: { offer: OfferProps }) => {
         <div className="flex flex-col gap-1 border-t border-gray-700 py-4 pr-2">
           <p className="text-gray-400 text-sm font-normal leading-normal">ID</p>
           <p className="text-white text-sm font-normal leading-normal">
-            {offer.id}
+            {offer?.id}
           </p>
         </div>
         <div className="flex flex-col gap-1 border-t border-gray-700 py-4 pl-2">
@@ -90,7 +69,7 @@ export const TabOffer = ({ offer }: { offer: OfferProps }) => {
             Name
           </p>
           <p className="text-white text-sm font-normal leading-normal">
-            {offer.name}
+            {offer?.Crypto?.name}
           </p>
         </div>
         <div className="flex flex-col gap-1 border-t border-gray-700 py-4 pr-2">
@@ -98,7 +77,10 @@ export const TabOffer = ({ offer }: { offer: OfferProps }) => {
             Value
           </p>
           <p className="text-white text-sm font-normal leading-normal">
-            {offer.value}
+            {offer?.Crypto?.value}
+          </p>
+          <p className="text-white text-base font-medium leading-normal">
+            {offer?.User?.pseudo}
           </p>
         </div>
         <div className="flex flex-col gap-1 border-t border-gray-700 py-4 pl-2">
@@ -106,10 +88,10 @@ export const TabOffer = ({ offer }: { offer: OfferProps }) => {
             Image
           </p>
           <Image
-            src={offer.image}
+            src={offer.Crypto?.image}
             width={500}
             height={100}
-            alt={`Picture of ${offer.name}`}
+            alt={`Picture of ${offer.Crypto?.image}`}
             className="rounded-lg shadow-md"
           />
         </div>
@@ -118,7 +100,7 @@ export const TabOffer = ({ offer }: { offer: OfferProps }) => {
             Quantity
           </p>
           <p className="text-white text-sm font-normal leading-normal">
-            {offer.quantity}
+            {offer?.Crypto?.quantity}
           </p>
         </div>
         <div className="flex flex-col gap-1 border-t border-gray-700 py-4 pl-2">
@@ -126,7 +108,7 @@ export const TabOffer = ({ offer }: { offer: OfferProps }) => {
             Created At
           </p>
           <p className="text-white text-sm font-normal leading-normal">
-            {offer.created_at}
+            {offer?.created_at}
           </p>
         </div>
         <div className="flex flex-col gap-1 border-t border-gray-700 py-4 pr-2 col-span-2">
@@ -134,13 +116,18 @@ export const TabOffer = ({ offer }: { offer: OfferProps }) => {
             Updated At
           </p>
           <p className="text-white text-sm font-normal leading-normal">
-            {offer.updated_at}
+            {offer?.updated_at}
           </p>
         </div>
       </div>
       <div className="flex px-4 py-3">
-        <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 flex-1 bg-[#338de6] text-white text-base font-bold leading-normal tracking-wide shadow-lg">
-          <span className="truncate">Buy Now</span>
+        <button
+          className="bg-white text-center rounded-lg text-indigo-600 w-20 p-1 text-sm mt-1"
+          onClick={() => {
+            handleCryptoBuyViaOffer(offer?.id);
+          }}
+        >
+          Buy
         </button>
       </div>
       <div className="h-5 bg-[#111418]"></div>

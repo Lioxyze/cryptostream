@@ -30,20 +30,29 @@ export type AnimalProps = {
 };
 
 export type CryptoProps = {
+  id: string;
   name: string;
-  value: string;
-  quantity: string;
+  value: number;
+  quantity: number;
   image: string;
+  created_at: string;
+  updated_at: string;
 };
 
 export type OfferProps = {
   id: string;
+  id_crypto: string;
   name: string;
   value: number;
   image: string;
-  quantity: number;
+  quantity: String;
   created_at: string;
   updated_at: string;
+  Crypto: OfferProps;
+  amount: Number;
+  User: {
+    pseudo: string;
+  };
 };
 
 export type CreateCryptoProps = {
@@ -100,4 +109,21 @@ export type AnimalUpdateOrInsertProps = {
   boxId: string;
   ownerId: string;
   categoryId: string;
+};
+
+export type OffersPropss = {
+  id: string;
+  User: {
+    pseudo: string;
+  };
+  amount: number;
+  created_at: string;
+  id_user: string;
+  Crypto: CryptoProps;
+};
+
+export type InformationUserProps = {
+  id: string;
+  pseudo: string;
+  dollarAvailables: string;
 };

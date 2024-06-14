@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Tabcrypto from "./Tabcrypto";
 import { AllCrypto } from "@/Service/crypto";
-import { CryptoProps } from "@/Utils/types";
+import { CryptoProps, InformationUserProps } from "@/Utils/types";
 import styled from "styled-components";
+import ProfileCard from "./ProfileCard";
 
 const CardContainer = styled.div`
   display: grid;
@@ -14,6 +15,8 @@ const CardContainer = styled.div`
 const Main = () => {
   const [cryptoList, setCryptoList] = useState<CryptoProps[]>();
   const [isReloadNeeded, setIsReloadNeeded] = useState(false);
+  const [unformationUserList, setInformationUser] =
+    useState<InformationUserProps[]>();
 
   useEffect(() => {
     AllCrypto().then((res) => {
@@ -49,6 +52,13 @@ const Main = () => {
         {cryptoList &&
           cryptoList.map((crypto) => {
             return <Tabcrypto crypto={crypto} />;
+          })}
+      </CardContainer>
+
+      <CardContainer>
+        {unformationUserList &&
+          unformationUserList.map((profile) => {
+            return <ProfileCard profile={profile} />;
           })}
       </CardContainer>
 

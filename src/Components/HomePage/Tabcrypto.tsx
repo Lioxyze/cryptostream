@@ -1,23 +1,10 @@
-import { CryptoProps } from "@/Utils/types";
+import { CryptoProps } from "@/Utils/typesKevin";
 import React from "react";
 import Image from "next/image";
+import { BuyCryptoModal } from "../Crypto/ByCryptoModal";
 
 export const Tabcrypto = ({ crypto }: { crypto: CryptoProps }) => {
   return (
-    // <div className="card">
-    //   <Image
-    //     src={crypto.image}
-    //     width={500}
-    //     height={100}
-    //     alt="Picture of the author"
-    //   />
-    //   <div className="card-content text-black ">
-    //     <div className="card-title text-black">Name: {crypto.name}</div>
-    //     <div className="card-info text-black">Quantity: {crypto.quantity}</div>
-    //     <div className="card-info text-black">Valeur: {crypto.value}</div>
-    //   </div>
-    // </div>
-
     <div
       className="card bg-[#111418] shadow-xl rounded-xl overflow-hidden"
       style={{ fontFamily: 'Manrope, "Noto Sans", sans-serif' }}
@@ -43,6 +30,7 @@ export const Tabcrypto = ({ crypto }: { crypto: CryptoProps }) => {
           Value:{" "}
           <span className="font-semibold text-gray-200">{crypto.value}</span>
         </div>
+        <BuyCryptoModal crypto={crypto} />
       </div>
     </div>
   );

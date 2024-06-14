@@ -23,39 +23,23 @@ export const TabUserList = ({ user }: { user: UserSProps }) => {
     //       : JSON.stringify(user.UserHasCrypto)}
     //   </div>
     // </div>
-    <div
-      className="card bg-[#111827] shadow-xl rounded-xl overflow-hidden"
-      style={{ fontFamily: 'Manrope, "Noto Sans", sans-serif' }}
-    >
-      <div className="w-full h-[200px] relative"></div>
-      <div className="card-content p-6">
-        <div className="card-title text-3xl font-bold text-white mb-2">
-          {user.pseudo}
-        </div>
-        <div className="card-info text-lg text-gray-400 mb-1">
-          firstName:{" "}
-          <span className="font-semibold text-gray-200">{user.firstName}</span>
-        </div>
-        <div className="card-info text-lg text-gray-400">
-          lastName:{" "}
-          <span className="font-semibold text-gray-200"> {user.lastName}</span>
-        </div>
-
-        <div className="card-info text-lg text-gray-400">
-          dollarAvailables:{" "}
-          <span className="font-semibold text-gray-200">
-            {" "}
-            {user.dollarAvailables}
-          </span>
-        </div>
-        <div className="card-info text-lg text-gray-400">
-          UserHasCrypto:{" "}
-          <span className="font-semibold text-gray-200">
-            {" "}
-            {Array.isArray(user.UserHasCrypto)
-              ? user.UserHasCrypto.join(", ")
-              : JSON.stringify(user.UserHasCrypto)}
-          </span>
+    <div className="flex items-center space-x-4 bg-gray-800 p-2 rounded-lg">
+      <div className="flex-shrink-0">
+        <img
+          className="h-10 w-10 rounded-full"
+          src="https://via.placeholder.com/150"
+          alt="Profile"
+        />
+      </div>
+      <div>
+        <div className="text-white font-bold">{user.pseudo}</div>
+        <div className="text-gray-400 text-sm">${user.firstName}</div>
+        <div className="text-white font-bold">{user.lastName}</div>
+        <div className="text-gray-400 text-sm">${user.dollarAvailables}</div>
+        <div className="text-white font-bold">
+          {Array.isArray(user.UserHasCrypto)
+            ? user.UserHasCrypto.join(", ")
+            : JSON.stringify(user.UserHasCrypto)}
         </div>
       </div>
     </div>
@@ -63,3 +47,26 @@ export const TabUserList = ({ user }: { user: UserSProps }) => {
 };
 
 export default TabUserList;
+
+{
+  /* <div className="flex items-center space-x-4 bg-gray-800 p-2 rounded-lg">
+  <div className="flex-shrink-0">
+    <img
+      className="h-10 w-10 rounded-full"
+      src="https://via.placeholder.com/150"
+      alt="Profile"
+    />
+  </div>
+  <div>
+    <div className="text-white font-bold">{user.pseudo}</div>
+    <div className="text-gray-400 text-sm">${user.firstName}</div>
+    <div className="text-white font-bold">{user.lastname}</div>
+    <div className="text-gray-400 text-sm">${user.dollarAvailables}</div>
+    <div className="text-white font-bold">
+      {Array.isArray(user.UserHasCrypto)
+        ? user.UserHasCrypto.join(", ")
+        : JSON.stringify(user.UserHasCrypto)}
+    </div>
+  </div>
+</div>; */
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   CryptoProps,
+  InformationUserProps,
   OfferProps,
   RoleListProps,
   UserSProps,
@@ -13,48 +14,59 @@ import Tabcrypto from "../HomePage/Tabcrypto";
 import { AllCrypto } from "@/Service/crypto";
 import { AllUser } from "@/Service/user";
 import TabUserList from "./TabUserList";
-import { UserContainer } from "./CardContainer";
 import TabOffer from "../Offer/TabOffer";
 import { AllOffer } from "@/Service/offers";
+import ProfileCard from "../HomePage/ProfileCard";
+import { AllInformationUser } from "@/Service/auth";
+import { AddOfferModal } from "../Offer/AddOfferModal";
+import { AddPropsModal } from "../Crypto/AddCryptoModal";
 
 const MarketPageContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px; // Ajustez l'espacement entre les éléments selon vos besoins
-  padding: 16px; // Ajustez le padding selon vos besoins
+  gap: 16px; // Adjust spacing between elements as needed
+  padding: 16px; // Adjust padding as needed
 `;
 
 const MarketPage = () => {
-  const [rolelist, setRolelist] = useState<RoleListProps[]>();
+  const [rolelist, setRolelist] = useState<RoleListProps[]>([]);
   const [isReloadNeeded, setIsReloadNeeded] = useState(false);
-  const [cryptoList, setCryptoList] = useState<CryptoProps[]>();
-  const [userlist, setUserlist] = useState<UserSProps[]>();
-  const [offerList, setOfferList] = useState<OfferProps[]>();
+  const [cryptoList, setCryptoList] = useState<CryptoProps[]>([]);
+  const [userlist, setUserlist] = useState<UserSProps[]>([]);
+  const [offerList, setOfferList] = useState<OfferProps[]>([]);
+  const [profilelist, setProfilelist] = useState<InformationUserProps[]>([]);
 
   useEffect(() => {
     AllRole().then((res) => {
-      setRolelist(res.data);
+      setRolelist(Array.isArray(res.data) ? res.data : []);
       console.log(res.data);
     });
   }, [isReloadNeeded]);
 
   useEffect(() => {
     AllCrypto().then((res) => {
-      setCryptoList(res.data);
+      setCryptoList(Array.isArray(res.data) ? res.data : []);
       console.log(res.data);
     });
   }, [isReloadNeeded]);
 
   useEffect(() => {
     AllUser().then((res) => {
-      setUserlist(res.data);
+      setUserlist(Array.isArray(res.data) ? res.data : []);
       console.log(res.data);
     });
   }, [isReloadNeeded]);
 
   useEffect(() => {
     AllOffer().then((res) => {
-      setOfferList(res.data);
+      setOfferList(Array.isArray(res.data) ? res.data : []);
+      console.log(res.data);
+    });
+  }, [isReloadNeeded]);
+
+  useEffect(() => {
+    AllInformationUser().then((res) => {
+      setProfilelist(Array.isArray(res.data) ? res.data : []);
       console.log(res.data);
     });
   }, [isReloadNeeded]);
@@ -63,63 +75,62 @@ const MarketPage = () => {
     <div className="bg-[#111F2E]">
       <section className="bg-white py-20 lg:py-40">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center"></div>
+          <div className="text-center">
+            <AddOfferModal setIsReloadNeeded={setIsReloadNeeded} />
+            <AddPropsModal setIsReloadNeeded={setIsReloadNeeded} />
+          </div>
         </div>
       </section>
-
       <div className="text-center">
         <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-          All Role :
+          All Role:
         </h1>
       </div>
-
       <CardContainer>
-        {rolelist &&
-          rolelist.map((rolelist) => {
-            return <TabRoleList rolelist={rolelist} />;
-          })}
+        {rolelist.map((role) => (
+          <TabRoleList key={role.id} rolelist={role} />
+        ))}
       </CardContainer>
-
       <div className="text-center m-5">
         <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight m-9">
-          All Crypto :
+          All Crypto:
         </h1>
       </div>
-
       <CardContainer>
-        {cryptoList &&
-          cryptoList.map((crypto) => {
-            return <Tabcrypto crypto={crypto} />;
-          })}
+        {cryptoList.map((crypto) => (
+          <Tabcrypto key={crypto.id} crypto={crypto} />
+        ))}
       </CardContainer>
-
       <div className="text-center m-5">
         <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight m-9">
-          All Offer :
+          All Offer:
         </h1>
       </div>
-
       <CardContainer>
-        {offerList &&
-          offerList.map((offer) => {
-            return <TabOffer offer={offer.Crypto} />;
-          })}
+        {offerList.map((offer) => (
+          <TabOffer
+            key={offer.id}
+            offer={offer.Crypto}
+            setIsReloadNeeded={setIsReloadNeeded}
+          />
+        ))}
       </CardContainer>
-
       <div className="text-center m-5">
         <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight m-9">
-          All User :
+          All User:
         </h1>
       </div>
-
       <CardContainer>
-        {userlist &&
-          userlist.map((user) => {
-            return <TabUserList user={user} />;
-          })}
+        {userlist.map((user) => (
+          <TabUserList key={user.id} user={user} />
+        ))}
       </CardContainer>
-
-      <section className=" py-20">
+      <CardContainer>
+        {profilelist.map((profile) => (
+          <ProfileCard key={profile.id} profile={profile} />
+        ))}
+      </CardContainer>
+      <section className="py-20">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-lg shadow"></div>

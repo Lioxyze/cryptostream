@@ -37,11 +37,11 @@ export const DeleteCryptoProps = ({
   return (
     <div className="relative overflow-y-scroll h-full">
       <button
-        className="w-32 bg-white rounded-md border-indigo-500 text-black  flex items-center justify-evenly h-8"
+        className="mx-auto my-4 w-48 bg-red-600 text-white rounded-md border border-red-500 flex items-center justify-center h-10 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
         onClick={handleOpen}
       >
-        <CiCirclePlus size={24} />
-        Delete Crypto
+        <CiCirclePlus size={24} className="mr-2" />
+        Delete
       </button>
       <Modal
         open={open}

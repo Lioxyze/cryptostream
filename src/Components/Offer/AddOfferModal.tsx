@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Box, Modal } from "@mui/material";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { OfferProps } from "@/Utils/types";
 
 import { CiCirclePlus } from "react-icons/ci";
 import { InsertOffersForm } from "./InsertOffer";
+import { OfferProps } from "@/Utils/types";
 
 type ModalUpdateProps = {
   OffersProps?: OfferProps;
@@ -37,10 +37,10 @@ export const AddOfferModal = ({
   return (
     <div className="relative overflow-y-scroll h-full">
       <button
-        className="w-32 bg-white rounded-md border-indigo-500 text-black  flex items-center justify-evenly h-8"
+        className="mx-auto my-4 w-48 bg-indigo-600 text-white rounded-md border border-indigo-500 flex items-center justify-center h-10 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         onClick={handleOpen}
       >
-        <CiCirclePlus size={24} />
+        <CiCirclePlus size={24} className="mr-2" />
         Add Offers
       </button>
       <Modal

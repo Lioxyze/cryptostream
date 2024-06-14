@@ -16,13 +16,8 @@ export async function insertOffer(offer: OfferProps) {
     .post(
       url,
       {
-        id: offer.id,
-        name: offer.name,
-        value: Number(offer.value),
-        image: offer.image,
-        quantity: Number(offer.quantity),
-        created_at: offer.created_at,
-        updated_at: offer.created_at,
+        id_crypto: offer.id_crypto,
+        amount: Number(offer.amount),
       },
 
       axiosConfig
@@ -48,6 +43,27 @@ export async function AllOffer() {
   };
   return axios
     .get(url, axiosConfig)
+    .then((res) => {
+      return res;
+    })
+    .catch((e) => {
+      throw new Error(e);
+    });
+}
+
+export async function buyOffer(id_offer: string) {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}trade/create`;
+
+  let axiosConfig = {
+    headers: {
+      "content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  return axios
+    .post(url, { id_offer: id_offer }, axiosConfig)
     .then((res) => {
       return res;
     })

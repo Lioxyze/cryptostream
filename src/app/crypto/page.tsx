@@ -1,12 +1,9 @@
 "use client";
 import Footer from "@/Components/HomePage/Footer";
 import Navbar from "@/Components/HomePage/NavBar";
-import MarketPage from "@/Components/AdminPage/MarketPage";
-import MarketPageContainer from "@/Components/AdminPage/MarketPage";
 import { AllCrypto } from "@/Service/crypto";
 import { CryptoProps } from "@/Utils/types";
 import { useEffect, useState } from "react";
-import MarketPageMain from "@/Components/Crypto/CryptoMain";
 import CryptoPageMain from "@/Components/Crypto/CryptoMain";
 
 export default function Home() {
@@ -22,7 +19,7 @@ export default function Home() {
   return (
     <div>
       <div>
-        <Navbar />
+        <Navbar card={} />
       </div>
 
       <div>
