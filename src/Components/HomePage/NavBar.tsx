@@ -36,14 +36,14 @@ const Navbar = ({ card }: { card: InformationUserProps }) => {
           </div>
           <div className="text-sm text-gray-400">
             <Image
-              src={card.pseudo}
+              src="https://i.ytimg.com/an_webp/6d6H9n2CVzw/mqdefault_6s.webp?du=3000&sqp=CMznsLMG&rs=AOn4CLBmejkQY63QP4eWv-sGIfnEc5WbQA"
               alt="Profile Picture"
               width={50} // Définissez la largeur de l'image en pixels
               height={50} // Définissez la hauteur de l'image en pixels
               className="rounded-full"
             />
-            <p className="font-semibold">{card.pseudo}</p>
-            <p>{card.dollarAvailables} $</p>
+            <p className="font-semibold">Lioxyze</p>
+            <p> 1000 $</p>
           </div>
         </a>
         <div className="lg:hidden">

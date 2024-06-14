@@ -45,6 +45,17 @@ const Main = () => {
               Start Now
             </a>
           </div>
+          <div className="flex justify-center mt-8 mb-8">
+            <iframe
+              width="853"
+              height="480"
+              src="https://www.youtube.com/embed/VeiH5pMPiUg"
+              title="Andrew Tate - On My Own (Music Video)"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
       </section>
 
