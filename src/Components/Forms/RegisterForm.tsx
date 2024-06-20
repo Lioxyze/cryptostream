@@ -34,7 +34,7 @@ export const RegisterForm = ({
   const onSubmit: SubmitHandler<AuthUpdateProps> = (data) =>
     registerr(data)
       .then((res) => {
-        push("/");
+        push("/auth/login");
       })
       .catch((e) => console.log(e));
 

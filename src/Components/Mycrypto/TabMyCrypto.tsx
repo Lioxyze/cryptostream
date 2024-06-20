@@ -12,11 +12,11 @@ export const CardUserMyAssets = ({
       <div className="w-full bg-white rounded-3xl border shadow-lg p-6">
         <div className="mb-6">
           <p className="text-sm text-gray-400">
-            <span className="font-semibold">Nom :</span>{" "}
+            <span className="font-semibold">FirstName :</span>{" "}
             {userMyassets?.firstName}
           </p>
           <p className="text-sm text-gray-400">
-            <span className="font-semibold">Prénom :</span>{" "}
+            <span className="font-semibold">LastName :</span>{" "}
             {userMyassets?.lastName}
           </p>
           <p className="text-sm text-gray-400">
@@ -27,9 +27,13 @@ export const CardUserMyAssets = ({
             <span className="font-semibold">Age :</span> {userMyassets?.age} ans
           </p>
           <p className="text-sm text-gray-400">
-            <span className="font-semibold">DOLLARS :</span>{" "}
-            {userMyassets?.dollarAvailables} %
+            <span className="font-semibold">Balance :</span>{" "}
+            {userMyassets?.dollarAvailables} $
           </p>
+        </div>
+
+        <div>
+          <h1 className="text-black">My Crypto : </h1>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
@@ -48,12 +52,7 @@ export const CardUserMyAssets = ({
                 <h2 className="text-xl font-bold text-black mb-2">
                   {crypto.Crypto.name}
                 </h2>
-                <div className="text-lg text-gray-700 mb-1">
-                  Quantity:{" "}
-                  <span className="font-semibold">
-                    {crypto.Crypto.quantity}
-                  </span>
-                </div>
+                <div className="text-lg text-gray-700 mb-1"></div>
                 <div className="text-lg text-gray-700 mb-1">
                   Value:{" "}
                   <span className="font-semibold">{crypto.Crypto.value}</span>
