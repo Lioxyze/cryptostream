@@ -127,3 +127,32 @@ export type InformationUserProps = {
   pseudo: string;
   dollarAvailables: string;
 };
+
+export type UserMyAssetsProps = {
+  firstName: string;
+  age: number;
+  lastName: string;
+  pseudo: string;
+  dollarAvailables: number;
+  UserHasCrypto: [
+    {
+      Crypto: {
+        id: string;
+        name: string;
+        value: number;
+        image: string;
+        quantity: number;
+        created_at: string;
+        updated_at: string;
+      };
+      amount: number;
+    }
+  ];
+};
+
+export type PromoCodeProps = {
+  id: string;
+  name: string;
+  value: string;
+  PromocodeProps?: PromoCodeProps;
+};

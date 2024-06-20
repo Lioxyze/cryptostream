@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { Box, Modal } from "@mui/material";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { CryptoProps } from "@/Utils/types";
+import { PromoCodeProps } from "@/Utils/types";
 import { CiCirclePlus } from "react-icons/ci";
-import { InsertCryptoForm } from "../Crypto/InsertCrypto";
+import { InsertPromoCodeForm } from "./InsertPromo";
 
 type ModalUpdateProps = {
-  CryptoProps?: CryptoProps;
+  PromoCodeProps?: PromoCodeProps;
   setIsReloadNeeded: any;
 };
 
-export const DeleteOfferProps = ({
-  CryptoProps,
+export const AddPromoCodeModal = ({
+  PromoCodeProps,
   setIsReloadNeeded,
 }: ModalUpdateProps) => {
   const [open, setOpen] = useState(false);
@@ -36,11 +36,11 @@ export const DeleteOfferProps = ({
   return (
     <div className="relative overflow-y-scroll h-full">
       <button
-        className="mx-auto my-4 w-48 bg-red-600 text-white rounded-md border border-red-500 flex items-center justify-center h-10 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+        className="mx-auto my-4 w-48 bg-indigo-600 text-white rounded-md border border-indigo-500 flex items-center justify-center h-10 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         onClick={handleOpen}
       >
         <CiCirclePlus size={24} className="mr-2" />
-        Delete
+        Add PromoCode
       </button>
       <Modal
         open={open}
@@ -56,8 +56,7 @@ export const DeleteOfferProps = ({
             >
               <IoIosCloseCircleOutline color="#000" size={48} />
             </span>
-            <InsertCryptoForm
-              CryptoProps={CryptoProps}
+            <InsertPromoCodeForm
               setIsReloadNeeded={setIsReloadNeeded}
               handleClose={handleClose}
             />

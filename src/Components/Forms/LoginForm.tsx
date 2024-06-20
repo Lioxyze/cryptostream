@@ -2,6 +2,7 @@
 import { login } from "@/Service/auth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -24,6 +25,7 @@ export const LoginForm = () => {
           if (res.status === 200) {
             if (typeof window !== "undefined") {
               window.localStorage.setItem("token", res.data.access_token);
+              toast.success("Connexion réussie ");
               push("/");
             }
           }

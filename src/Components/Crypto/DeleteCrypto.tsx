@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Box, Modal } from "@mui/material";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { CryptoProps } from "@/Utils/types";
-import { InsertAnimalForm } from "../Forms/InsertAnimal";
 import { CiCirclePlus } from "react-icons/ci";
 import { InsertCryptoForm } from "./InsertCrypto";
 

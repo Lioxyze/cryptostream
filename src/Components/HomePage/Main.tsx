@@ -47,13 +47,14 @@ const Main = () => {
           </div>
           <div className="flex justify-center mt-8 mb-8">
             <iframe
-              width="853"
-              height="480"
-              src="https://www.youtube.com/embed/VeiH5pMPiUg"
-              title="Andrew Tate - On My Own (Music Video)"
+              width="800"
+              height="400"
+              src="https://www.youtube.com/embed/lr9sqK2PpnU?si=_dWhRPHGbxeXfCr4"
+              title="YouTube video player"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
             ></iframe>
           </div>
         </div>

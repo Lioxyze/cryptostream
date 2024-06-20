@@ -1,10 +1,9 @@
 import { buyCrypto } from "@/Service/crypto";
-import { CreateCryptoProps } from "@/Utils/types";
-// import { CryptoProps } from "@/Utils/typesKevin";
 import { CryptoProps } from "@/Utils/types";
 
 import { Box, Modal } from "@mui/material";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 export const BuyCryptoModal = ({ crypto }: { crypto: CryptoProps }) => {
   const style = {
@@ -26,7 +25,7 @@ export const BuyCryptoModal = ({ crypto }: { crypto: CryptoProps }) => {
   function HandleCrypoBuy() {
     buyCrypto(crypto.id, amount)
       .then((res) => {
-        alert("success");
+        toast.success("Crypto buy please check your profile to see it !!!");
         handleClose();
       })
       .catch((e) => console.log(e));

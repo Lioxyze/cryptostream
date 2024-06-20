@@ -2,7 +2,6 @@
 import Footer from "@/Components/HomePage/Footer";
 import Navbar from "@/Components/HomePage/NavBar";
 import MarketPage from "@/Components/AdminPage/MarketPage";
-import MarketPageContainer from "@/Components/AdminPage/MarketPage";
 import { AllCrypto } from "@/Service/crypto";
 import { CryptoProps } from "@/Utils/types";
 import { useEffect, useState } from "react";

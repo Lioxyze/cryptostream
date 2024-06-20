@@ -2,27 +2,31 @@ import React, { useEffect, useState } from "react";
 import {
   CryptoProps,
   OfferProps,
+  PromoCodeProps,
   RoleListProps,
   UserSProps,
 } from "@/Utils/types";
 import styled from "styled-components";
 
 import { CardContainer } from "../Cards/CardContainer";
-import { AddOfferModal } from "./AddOfferModal";
-import TabOffer from "./TabOffer";
 import { AllOffer } from "@/Service/offers";
-import { DeleteOfferProps } from "./DeleteOffer";
+import { AllpromoCode } from "@/Service/PromoCode";
+import Tabpromocode from "./TabPromo";
+import { AddOfferModal } from "../Offer/AddOfferModal";
 
-const OfferPageMain = () => {
+const PromoCodePageMain = () => {
   const [rolelist, setRolelist] = useState<RoleListProps[]>();
-  const [isReloadNeeded, setIsReloadNeeded] = useState(false);
+
   const [cryptoList, setCryptoList] = useState<CryptoProps[]>();
   const [userlist, setUserlist] = useState<UserSProps[]>();
   const [offerList, setOfferList] = useState<OfferProps[]>();
+  const [isReloadNeeded, setIsReloadNeeded] = useState(false);
+
+  const [promocodelist, setPromocodelist] = useState<PromoCodeProps[]>();
 
   useEffect(() => {
-    AllOffer().then((res) => {
-      setOfferList(res.data);
+    AllpromoCode().then((res) => {
+      setPromocodelist(res.data);
       console.log(res.data);
     });
   }, [isReloadNeeded]);
@@ -49,11 +53,9 @@ const OfferPageMain = () => {
         </h1>
       </div>
       <CardContainer>
-        {offerList &&
-          offerList.map((offer) => {
-            return (
-              <TabOffer offer={offer} setIsReloadNeeded={setIsReloadNeeded} />
-            );
+        {promocodelist &&
+          promocodelist.map((promocode) => {
+            return <Tabpromocode promocode={promocode} />;
           })}
       </CardContainer>
       <section className=" py-20">
@@ -69,4 +71,4 @@ const OfferPageMain = () => {
   );
 };
 
-export default OfferPageMain;
+export default PromoCodePageMain;

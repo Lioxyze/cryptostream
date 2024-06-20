@@ -7,15 +7,6 @@ import { CardContainer } from "../Cards/CardContainer";
 import Tabcrypto from "../HomePage/Tabcrypto";
 import { AllCrypto } from "@/Service/crypto";
 import { AllUser } from "@/Service/user";
-import { AddPropsModal } from "./AddCryptoModal";
-import { DeleteCryptoProps } from "./DeleteCrypto";
-
-const MarketPageContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  padding: 16px;
-`;
 
 const SearchBar = styled.input`
   width: 100%;

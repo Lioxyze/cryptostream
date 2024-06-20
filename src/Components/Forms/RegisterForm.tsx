@@ -19,10 +19,6 @@ export const RegisterForm = ({
   setIsReloadNeeded,
   handleClose,
 }: RegisterProps) => {
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
-  // const [confirmPassword, setConfirmPassword] = useState('')
-  // const [name, setName] = useState('')
   const [error, setError] = useState("");
   const { push } = useRouter();
 
@@ -33,10 +29,6 @@ export const RegisterForm = ({
     formState: { errors },
   } = useForm<AuthUpdateProps>({
     mode: "onChange",
-    // resolver: yupResolver(schema),
-    // defaultValues: {
-    //   firstName: "lorenzo",
-    // },
   });
 
   const onSubmit: SubmitHandler<AuthUpdateProps> = (data) =>

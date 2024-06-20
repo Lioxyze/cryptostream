@@ -2,7 +2,6 @@ import { OfferProps } from "@/Utils/types";
 import React from "react";
 import Image from "next/image";
 import { buyOffer } from "@/Service/offers";
-import OfferPageMain from "./OfferMain";
 
 export const TabOffer = ({
   offer,

@@ -4,8 +4,10 @@ import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 import { AllUser } from "@/Service/user";
+import LogoutButton from "../LogoutButton/LogoutButton";
+import toast from "react-hot-toast";
 
-const Navbar = ({ card }: { card: InformationUserProps }) => {
+const Navbar = () => {
   const [informationUserList, setInformationUser] =
     useState<InformationUserProps[]>();
   const [isReloadNeeded, setIsReloadNeeded] = useState(false);
@@ -16,6 +18,7 @@ const Navbar = ({ card }: { card: InformationUserProps }) => {
       console.log(res.data);
     });
   }, [isReloadNeeded]);
+
   return (
     <div>
       <nav className="relative px-4 py-4 flex justify-between items-center bg-[#111F2E]">
@@ -35,15 +38,9 @@ const Navbar = ({ card }: { card: InformationUserProps }) => {
             <div className="absolute w-12 h-12 overflow-hidden rounded-full right-0"></div>
           </div>
           <div className="text-sm text-gray-400">
-            <Image
-              src="https://i.ytimg.com/an_webp/6d6H9n2CVzw/mqdefault_6s.webp?du=3000&sqp=CMznsLMG&rs=AOn4CLBmejkQY63QP4eWv-sGIfnEc5WbQA"
-              alt="Profile Picture"
-              width={50} // Définissez la largeur de l'image en pixels
-              height={50} // Définissez la hauteur de l'image en pixels
-              className="rounded-full"
-            />
             <p className="font-semibold">Lioxyze</p>
             <p> 1000 $</p>
+            <LogoutButton />
           </div>
         </a>
         <div className="lg:hidden">
