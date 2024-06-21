@@ -75,8 +75,8 @@ export type AuthUpdateProps = {
 };
 
 export type AuthProps = {
-  email: string;
-  password: string;
+  email: any;
+  password: any;
   pseudo?: string;
   firstName: string;
   age: number;

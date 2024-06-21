@@ -24,7 +24,7 @@ const FetchPostRegister = async (data: userType) => {
   });
   return result;
 };
-const Login = () => {
+const LoginForm = () => {
   const { push } = useRouter();
   const {
     register,
@@ -39,7 +39,7 @@ const Login = () => {
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("name", response.data.name);
-        push("/products");
+        push("/");
       }
     } catch (error: any) {
       console.log(error);
@@ -118,4 +118,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;
