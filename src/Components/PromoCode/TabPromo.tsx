@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { PromoCodeProps } from "@/Utils/types";
 
 export const Tabpromocode = ({ promocode }: { promocode: PromoCodeProps }) => {

@@ -75,13 +75,13 @@ export type AuthUpdateProps = {
 };
 
 export type AuthProps = {
-  email: any;
-  password: any;
+  email: string;
+  password: string;
   pseudo?: string;
-  firstName: string;
-  age: number;
-  lastName: string;
-  city: string;
+  firstName?: string;
+  age?: number;
+  lastName?: string;
+  city?: string;
   promocode?: string;
 };
 
